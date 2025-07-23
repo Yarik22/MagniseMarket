@@ -1,0 +1,14 @@
+<div class="chart-container">
+  <div *ngIf="isLoading" class="loading">Loading chart data...</div>
+  <div *ngIf="!isLoading">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [title]="chartOptions.title"
+      [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"
+      [tooltip]="chartOptions.tooltip"
+    >
+    </apx-chart>
+  </div>
+</div>

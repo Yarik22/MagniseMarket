@@ -1,0 +1,72 @@
+<div class="currency-list">
+  <table class="currency-table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Bid</th>
+        <th>Ask</th>
+        <th>Last</th>
+        <th>Change</th>
+        <th>Change %</th>
+        <th>Updated</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let instrument of instruments">
+        <td>{{ instrument.symbol }}</td>
+
+        <td>{{ formatPrice(getMarketData(instrument.id).bidPrice) }}</td>
+
+        <td>{{ formatPrice(getMarketData(instrument.id).askPrice) }}</td>
+
+        <td [class]="getChangeClass(getMarketData(instrument.id).change)">
+          {{ formatPrice(getMarketData(instrument.id).lastPrice) }}
+        </td>
+
+        <td [class]="getChangeClass(getMarketData(instrument.id).change)">
+          {{
+            getMarketData(instrument.id).change !== undefined
+              ? (getMarketData(instrument.id).change | number)
+              : "-"
+          }}
+        </td>
+
+        <td [class]="getChangeClass(getMarketData(instrument.id).changePct)">
+          {{
+            getMarketData(instrument.id).changePct !== undefined
+              ? (getMarketData(instrument.id).changePct | number) + "%"
+              : "-"
+          }}
+        </td>
+
+        <td class="timestamp">
+          {{ getMarketData(instrument.id).lastUpdated | date }}
+        </td>
+        <td>
+          <button class="chart-btn" (click)="selectInstrument(instrument.id)">
+            Show Chart
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls">
+    <button
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+      class="page-btn"
+    >
+      Previous
+    </button>
+    <span class="page-info">Page {{ currentPage }} of {{ paging.pages }}</span>
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === paging.pages"
+      class="page-btn"
+    >
+      Next
+    </button>
+  </div>
+</div>
