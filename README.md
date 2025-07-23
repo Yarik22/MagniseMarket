@@ -15,4 +15,4 @@ Copy access token from get token post request and paste to "access_token" in env
 ng serve
 ```
 
-[Chart](Chart.jpg)
+![Chart](Chart.jpg)
