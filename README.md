@@ -14,3 +14,5 @@ Copy access token from get token post request and paste to "access_token" in env
 ```bash
 ng serve
 ```
+
+[Chart](Chart.jpg)
